@@ -75,4 +75,7 @@ outside calls. The same commands run in CI: `.github/workflows/test.yml`.
 | Apache TVM / MLC-LLM (the compiler and runtime WebLLM is built on) | Apache 2.0 |
 | Our own code (PWA shell, text pipeline, tests, demo script) | MIT (see `LICENSE`) — original work by Wyndham Heaven (elghaly), kept clearly separate from the reused items above |
 
+Built with Llama. The optional on-phone model is Meta Llama 3.2 1B Instruct,
+used under the Llama 3.2 Community License.
+
 Wyndham Heaven (elghaly)
