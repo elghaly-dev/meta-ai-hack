@@ -86,6 +86,8 @@ const DATA_TYPES = [
   ['location', ['location', 'gps', 'precise location', 'where you are']],
   ['contacts', ['contacts', 'address book']],
   ['photos and videos', ['photos', 'videos', 'camera roll']],
+  // The camera itself (a permission list says "camera"), but not "camera roll".
+  ['camera', [/\bcamera\b(?!\s+roll)/]],
   ['messages', ['messages', 'sms', 'chat history']],
   ['call history', ['call log', 'call history']],
   ['device information', ['device id', 'device information', 'device model']],
@@ -93,7 +95,7 @@ const DATA_TYPES = [
   ['usage data', ['usage data', 'how you use', 'activity', 'interactions']],
   ['payment details', ['payment', 'card number', 'billing']],
   ['browsing data', ['browsing history', 'cookies', 'pages you visit']],
-  ['voice recordings', ['voice recordings', 'microphone', 'audio recordings']],
+  ['microphone or voice recordings', ['voice recordings', 'microphone', 'audio recordings']],
 ];
 
 const RECIPIENT_TYPES = [
@@ -115,7 +117,8 @@ const CONTROL_TYPES = [
 
 function findMentioned(text, table) {
   const lower = String(text || '').toLowerCase();
-  return table.filter(([, keys]) => keys.some((k) => lower.includes(k))).map(([label]) => label);
+  const hit = (k) => (k instanceof RegExp ? k.test(lower) : lower.includes(k));
+  return table.filter(([, keys]) => keys.some(hit)).map(([label]) => label);
 }
 
 // Deterministic fallback: only names what the pasted text actually mentions.

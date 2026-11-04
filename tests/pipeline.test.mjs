@@ -128,6 +128,15 @@ test('fallback names mentioned items and invents nothing', () => {
   assert.ok(fb.controls.includes('delete your data'));
 });
 
+test('fallback names the camera and microphone in a permission list, not the camera roll', () => {
+  const perms = fallbackAnswer('This app asks for camera and microphone permission.');
+  assert.ok(perms.collected.includes('camera'), 'must name the camera');
+  assert.ok(perms.collected.includes('microphone'), 'must name the microphone');
+  assert.ok(perms.controls.includes('change app permissions'));
+  const roll = fallbackAnswer('We read your camera roll.');
+  assert.equal(roll.collected, 'The pasted text mentions: photos and videos.');
+});
+
 test('fallback is honest when nothing is named', () => {
   const fb = fallbackAnswer('Hello world. The sky is blue today.');
   assert.ok(fb.collected.includes('does not name'));
