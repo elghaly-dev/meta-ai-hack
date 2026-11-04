@@ -1,0 +1,30 @@
+name: test
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Pipeline tests (stub engine, no weights, no network)
+        run: node --test tests/pipeline.test.mjs
+      - name: Every app-shell file the service worker caches exists
+        run: |
+          node -e '
+            const fs = require("fs");
+            const src = fs.readFileSync("sw.js", "utf8");
+            const list = src.match(/const SHELL = \[([\s\S]*?)\]/)[1];
+            const files = [...list.matchAll(/'"'"'([^'"'"']+)'"'"'/g)].map((m) => m[1]).filter((f) => f !== "./");
+            const missing = files.filter((f) => !fs.existsSync(f));
+            if (missing.length) { console.error("Missing shell files: " + missing.join(", ")); process.exit(1); }
+            console.log("All " + files.length + " shell files exist.");
+          '

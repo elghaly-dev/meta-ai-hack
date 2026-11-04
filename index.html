@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#2563eb">
+<title>Plain Privacy</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<style>
+  body { font-family: system-ui, -apple-system, sans-serif; margin: 0 auto; max-width: 720px; padding: 16px; background: #f8fafc; color: #101820; line-height: 1.5; }
+  h1 { font-size: 1.6rem; margin-bottom: 0; }
+  .tag { color: #475569; margin-top: 4px; }
+  textarea { width: 100%; min-height: 160px; box-sizing: border-box; padding: 10px; font: inherit; border: 1px solid #94a3b8; border-radius: 8px; background: #fff; }
+  button { font: inherit; padding: 10px 16px; margin: 8px 8px 0 0; border: 0; border-radius: 8px; cursor: pointer; background: #2563eb; color: #fff; }
+  button.secondary { background: #e2e8f0; color: #101820; }
+  section.answer { background: #fff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px 16px; margin-top: 12px; }
+  section.answer h2 { font-size: 1.05rem; margin: 0 0 4px; }
+  .note { color: #475569; font-size: 0.95rem; }
+  footer { margin-top: 24px; color: #475569; font-size: 0.9rem; }
+</style>
+</head>
+<body>
+<h1>Plain Privacy</h1>
+<p class="tag">Your privacy data, in plain words. Nothing leaves the phone.</p>
+
+<p>Paste a privacy policy, an app permission list, or a data-export file. You get a short answer in three parts: what is collected, who gets it, and what you can turn off.</p>
+
+<label for="input">Pasted text</label>
+<textarea id="input" placeholder="Paste a privacy policy, an app permission list, or a data-export file…"></textarea>
+<div>
+  <button id="explainBtn" type="button">Explain</button>
+  <button id="loadBtn" type="button" class="secondary">Load on-phone model (one download, on Wi-Fi)</button>
+</div>
+<p id="modelStatus" class="note"></p>
+<p id="sourceNote" class="note"></p>
+
+<section class="answer" aria-label="What is collected">
+  <h2>What is collected</h2>
+  <p id="outCollected">—</p>
+</section>
+<section class="answer" aria-label="Who gets it">
+  <h2>Who gets it</h2>
+  <p id="outRecipients">—</p>
+</section>
+<section class="answer" aria-label="What you can turn off">
+  <h2>What you can turn off</h2>
+  <p id="outControls">—</p>
+</section>
+
+<h2>How it works</h2>
+<ul>
+  <li>The on-phone check reads only what you paste, on the phone itself. It answers at once, with no network and no model.</li>
+  <li>The on-phone model is optional: one tap loads it (about 600–800 MB, on Wi-Fi). After that it refines the wording. If it cannot load, the check still answers.</li>
+  <li>After the model is kept on the phone, the app works in Airplane mode. Clearing site data means the model must download again — that is best-effort, not promised.</li>
+  <li>The model needs WebGPU: Safari 26 / iOS 26 or later, iPhone 11 and later. Older phones cannot run the model, but the check still answers.</li>
+  <li>Model load time on iPhone: unknown. First-answer time on iPhone: unknown. Whether the 1B model loads in iPhone Safari: unproven until the owner's phone test. Nothing here claims otherwise.</li>
+</ul>
+
+<footer>Built with Llama. Wyndham Heaven (elghaly)</footer>
+<script type="module" src="app.mjs"></script>
+</body>
+</html>
