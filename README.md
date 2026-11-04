@@ -71,7 +71,7 @@ outside calls. The same commands run in CI: `.github/workflows/test.yml`.
 | Reused item | Licence |
 |---|---|
 | Meta Llama 3.2 1B Instruct weights, MLC build `Llama-3.2-1B-Instruct-q4f32_1-MLC` | Llama 3.2 Community License (Meta) — use requires accepting Meta's terms |
-| `@mlc-ai/web-llm` (MLC AI) | Apache 2.0 |
+| `@mlc-ai/web-llm` 0.2.86 (MLC AI), pinned in `app.mjs` | Apache 2.0 |
 | Apache TVM / MLC-LLM (the compiler and runtime WebLLM is built on) | Apache 2.0 |
 | Our own code (PWA shell, text pipeline, tests, demo script) | MIT (see `LICENSE`) — original work by Wyndham Heaven (elghaly), kept clearly separate from the reused items above |
 

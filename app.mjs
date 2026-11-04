@@ -9,7 +9,8 @@ import {
 } from './pipeline.mjs';
 
 const MODEL_ID = 'Llama-3.2-1B-Instruct-q4f32_1-MLC';
-const ENGINE_URL = 'https://esm.sh/@mlc-ai/web-llm';
+// Pinned to one release, so a newer upstream release never runs next to the pasted text unreviewed.
+const ENGINE_URL = 'https://esm.sh/@mlc-ai/web-llm@0.2.86';
 
 let engine = null;
 
